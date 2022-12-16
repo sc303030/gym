@@ -1,5 +1,5 @@
 from django.urls import path, include
-
+from . import views
 urlpatterns = [
-    # path('',  )
+    path('crawling/', views.crawling , name='crawling')
 ]
