@@ -6,7 +6,7 @@ from model_utils.models import TimeStampedModel
 class School(TimeStampedModel):
     name = models.CharField(max_length=30, primary_key=True)
     url = models.URLField(max_length=200)
-    css_selector = models.JSONField()
+    selector = models.JSONField()
 
 
 class Notice(TimeStampedModel):

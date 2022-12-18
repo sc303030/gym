@@ -8,11 +8,11 @@ from reminder.models import Notice
 class SaDang(Common):
     def crawling(self) -> None:
         soup = self.get_soup()
-        _notices = soup.find(attrs={'class': self.css_selector['main']})
+        _notices = soup.find(attrs={'class': self.selector['main']})
         for notice in _notices:
             if type(notice) is Tag:
-                title = notice.find(attrs={'class': self.css_selector['title']}).get_text().strip()
-                date = notice.find(attrs={'class': self.css_selector['date']}).get_text()
+                title = notice.find(attrs={'class': self.selector['title']}).get_text().strip()
+                date = notice.find(attrs={'class': self.selector['date']}).get_text()
                 for txt in self.search_list:
                     if txt in title:
                         Notice.objects.create(school=self.obj, title=title, date=date)
