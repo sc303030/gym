@@ -1,1 +1,7 @@
 secret.py
+db.sqlite3
+reminder/migrations/*
+.pytest_cache
+__pycache__
+.idea
+*.xml
