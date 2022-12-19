@@ -14,14 +14,10 @@ class Notice(TimeStampedModel):
     title = models.TextField()
     date = models.CharField(max_length=10)
 
-    @classmethod
-    def check_title_and_date_primary(cls, title: str, date: str) -> bool:
-        obj = cls.objects.filter(title=title, date=date)
-        return True if not obj else False
-
-    def save(self, *args, **kwargs):
-        is_notice_primary = self.check_title_and_date_primary(self.title, self.date)
-        if is_notice_primary:
-            super().save(*args, **kwargs)
-        else:
-            return
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["title", 'date'],
+                name='unique notice for each title'
+            )
+        ]

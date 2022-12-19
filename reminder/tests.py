@@ -10,9 +10,9 @@ def test_with_client(school_one, client):
 
 @pytest.fixture
 def school_one(db) -> School:
-    css_selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
     school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/",
-                                   css_selector=css_selector)
+                                   selector=selector)
     return school
 
 
@@ -23,9 +23,9 @@ def notice_one(db, school_one) -> Notice:
 
 
 def test_create_school(db):
-    css_selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
     school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/",
-                                   css_selector=css_selector)
+                                   selector=selector)
     assert school.name == '사당중학교'
 
 
@@ -35,9 +35,9 @@ def test_create_notice(db, school_one):
     assert notice.title == 'test'
 
 
-def test_not_create_if_same_title_date(db, school_one, notice_one):
-    Notice.objects.create(school=school_one, title='test', date="2022-12-18")
-    assert len(Notice.objects.all()) == 1
+def test_error_notice_unique_constraint(db, school_one, notice_one):
+    with pytest.raises(Exception):
+        Notice.objects.create(school=school_one, title='test', date="2022-12-18")
 
 
 def test_create_two_notice(db, school_one, notice_one):
