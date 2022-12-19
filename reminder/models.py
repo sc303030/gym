@@ -21,3 +21,8 @@ class Notice(TimeStampedModel):
                 name='unique notice for each title'
             )
         ]
+
+
+class Reminder(TimeStampedModel):
+    notice = models.ForeignKey(Notice, related_name='notice', on_delete=models.CASCADE, db_column="notice_id")
+    remind = models.BooleanField(default=False)
