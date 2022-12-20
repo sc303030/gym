@@ -22,6 +22,9 @@ class Notice(TimeStampedModel):
             )
         ]
 
+    def __str__(self):
+        return f'{self.school.name} - {self.title}'
+
 
 class Reminder(TimeStampedModel):
     notice = models.ForeignKey(Notice, related_name='notice', on_delete=models.CASCADE, db_column="notice_id")
