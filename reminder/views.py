@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from reminder.crawling.sadang import SaDang
-from .task import test
+from .task import create_reminder_worker
 
 
 # Create your views here.
 def crawling(request):
     if request.method == 'GET':
-        sadang = SaDang('사당중학교')
-        sadang.crawling()
+        school_list = ['사당중학교', '봉은중학교']
+        for school in school_list:
+            create_reminder_worker.delay(school)
     return HttpResponse("test")
