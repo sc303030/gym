@@ -23,8 +23,8 @@ def convert_selector_to_json(css: str) -> json:
 n = int(input())
 schools = []
 for _ in range(n):
-    name, main_url, selector, link_url = list(input().split())
+    name, url, selector = list(input().split())
     selector = convert_selector_to_json(selector)
-    schools.append(School(name=name, main_url=main_url, selector=selector, link_url=link_url))
+    schools.append(School(name=name, url=url, selector=selector))
 
 School.objects.bulk_create(schools)
