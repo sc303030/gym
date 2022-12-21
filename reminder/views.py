@@ -10,3 +10,8 @@ def crawling(request):
         for school in school_list:
             create_reminder_worker.delay(school)
     return HttpResponse("test")
+
+
+def kakao(request):
+    print(request)
+    return HttpResponse("test")
