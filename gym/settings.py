@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # celery
     'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -137,4 +138,11 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     }
+}
+CELERY_BEAT_SCHEDULE = {
+    'add-every-2-seconds': {
+        'task': 'reminder.task.add',
+        'schedule': 2.0,
+        'args': (16, 16)
+    },
 }
