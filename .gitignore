@@ -5,3 +5,7 @@ reminder/migrations/*
 __pycache__
 .idea
 *.xml
+*.json
+*.bak
+*.dat
+*.dir
