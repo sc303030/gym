@@ -1,7 +1,7 @@
 from .models import School, Notice, Reminder
 import json
 import pytest
-from reminder.task import create_reminder_worker
+from reminder.tasks import create_reminder_worker
 from reminder.crawling.create_reminder import CreateReminder
 from django_celery_results.models import TaskResult, ChordCounter, GroupResult
 from unittest.mock import patch
