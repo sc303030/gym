@@ -25,11 +25,12 @@ class CreateReminder:
         return soup
 
     def create_reminder(self, title: str, date: str) -> None:
-        try:
-            notice = Notice.objects.create(school=self.school, title=title, date=date)
-            Reminder.objects.create(notice=notice)
-        except IntegrityError:
-            pass
+        if title is not None:
+            try:
+                notice = Notice.objects.create(school=self.school, title=title, date=date)
+                Reminder.objects.create(notice=notice)
+            except IntegrityError:
+                pass
 
     def crawling(self) -> Optional[tuple]:
         soup = self.get_soup()
