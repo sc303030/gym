@@ -2,6 +2,5 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('crawling/', views.crawling, name='crawling'),
-    path('kakao/', views.kakao, name='kakao')
+    path('oauth/', views.oauth, name='oauth')
 ]
