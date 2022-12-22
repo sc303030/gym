@@ -29,3 +29,12 @@ class Notice(TimeStampedModel):
 class Reminder(TimeStampedModel):
     notice = models.ForeignKey(Notice, related_name='notice', on_delete=models.CASCADE, db_column="notice_id")
     remind = models.BooleanField(default=False)
+
+
+class KakaoToken(TimeStampedModel):
+    access_token = models.TextField()
+    token_type = models.CharField(max_length=6)
+    refresh_token = models.TextField()
+    expires_in = models.IntegerField()
+    scope = models.CharField(max_length=12)
+    refresh_token_expires_in = models.IntegerField()
