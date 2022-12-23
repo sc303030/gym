@@ -142,7 +142,7 @@ CACHES = {
 }
 CELERY_BEAT_SCHEDULE = {
     'crawling-11-17-hours': {
-        'task': 'reminder.task.start_crawling',
+        'task': 'reminder.tasks.start_crawling',
         'schedule': crontab(minute=0, hour='11,17'),
         'args': ()
     },
