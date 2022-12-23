@@ -1,9 +1,9 @@
 import requests
 import json
-from reminder.models import KakaoToken
+from reminder.models import KakaoToken, Reminder
 
 
-def send_reminder():
+def send_reminder(reminder: Reminder):
     tokens = KakaoToken.objects.first()
     url = "https://kapi.kakao.com/v2/api/talk/memo/default/send"
     headers = {
@@ -12,14 +12,14 @@ def send_reminder():
 
     data = {
         'object_type': 'text',
-        'text': '테스트입니다',
+        'text': f"{reminder.notice.title}\n"
+                f"{reminder.notice.school.url}\n\n",
         'link': {
-            'web_url': 'https://developers.kakao.com',
-            'mobile_web_url': 'https://developers.kakao.com'
+            'web_url': reminder.notice.school.url,
         },
-        'button_title': '키워드'
+        'button_title': reminder.notice.school.name
     }
 
     data = {'template_object': json.dumps(data)}
     response = requests.post(url, headers=headers, data=data)
-    print(response.status_code)
+    return response.status_code
