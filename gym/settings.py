@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from secret import _SECRET_KEY
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,9 +141,14 @@ CACHES = {
     }
 }
 CELERY_BEAT_SCHEDULE = {
-    'add-every-2-seconds': {
-        'task': 'reminder.task.add',
-        'schedule': 2.0,
-        'args': (16, 16)
+    'crawling-11-17-hours': {
+        'task': 'reminder.task.start_crawling',
+        'schedule': crontab(minute=0, hour='11,17'),
+        'args': ()
+    },
+    'refresh-token-every-5-hours': {
+        'task': 'reminder.tasks.refresh_access_token',
+        'schedule': crontab(minute=0, hour='0,5,10,15,20'),
+        'args': ()
     },
 }
