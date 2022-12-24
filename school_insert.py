@@ -1,30 +1,22 @@
 import os
 import django
-import sys
 import json
-import re
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', "gym.settings")
 django.setup()
 from reminder.models import School
 
-input = sys.stdin.readline
+school_list = [
+    {'name': '사당중학교', 'url': 'https://sadang.sen.ms.kr/',
+     'selector': {"main": "main_small_list", "title": "ellipsis", "date": "date"}},
+    {'name': '봉은중학교', 'url': 'https://bongeun.sen.ms.kr/index.do',
+     'selector': {"main": "main_small_list", "title": "ellipsis", "date": "date"}}
+]
 
-
-def convert_selector_to_json(css: str) -> json:
-    css_selector_list = re.split(r'\{|\}|,', css)[1:-1]
-    result = {}
-    for _css in css_selector_list:
-        key, value = _css.split(':')
-        result[key] = value
-    return json.dumps(result)
-
-
-n = int(input())
 schools = []
-for _ in range(n):
-    name, url, selector = list(input().split())
-    selector = convert_selector_to_json(selector)
-    schools.append(School(name=name, url=url, selector=selector))
+for school in school_list:
+    obj = School.objects.filter(name=school['name'])
+    if not obj:
+        schools.append(School(name=school['name'], url=school['url'], selector=json.dumps(school['selector'])))
 
 School.objects.bulk_create(schools)
