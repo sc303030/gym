@@ -5,7 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', "gym.settings")
 django.setup()
 from reminder.models import KakaoToken
 
-from reminder.kakao.env_loader import load_env
+from get_setting import  load_env
 
 load_env()
 CLIENT_ID = os.getenv("CLIENT_ID")
