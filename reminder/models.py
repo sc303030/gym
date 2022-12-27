@@ -11,7 +11,7 @@ class School(TimeStampedModel):
 
 class Notice(TimeStampedModel):
     school = models.ForeignKey(School, related_name="school", on_delete=models.CASCADE, db_column="school_id")
-    title = models.TextField()
+    title = models.CharField(max_length=100)
     date = models.CharField(max_length=10)
 
     class Meta:
@@ -32,9 +32,9 @@ class Reminder(TimeStampedModel):
 
 
 class KakaoToken(TimeStampedModel):
-    access_token = models.TextField()
+    access_token = models.TextField(max_length=300)
     token_type = models.CharField(max_length=6)
-    refresh_token = models.TextField()
+    refresh_token = models.TextField(max_length=300)
     expires_in = models.IntegerField()
     scope = models.CharField(max_length=12)
     refresh_token_expires_in = models.IntegerField()
