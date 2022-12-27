@@ -1,0 +1,96 @@
+version: '3'
+
+volumes:
+  mysql_db: {}
+  redis_cache: {}
+  celery_task: {}
+
+services:
+  db:
+    restart: always
+    image: mysql
+    container_name: mysql
+    cap_add:
+      - SYS_NICE
+    env_file:
+      - .env-prod.db
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    networks:
+      - backend
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_db:/var/lib/mysql
+
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
+  gym:
+    restart: always
+    image: image_name
+    container_name: gym
+    command:
+      - bash
+      - -c
+      - |
+        chmod +x /wait-for-it.sh
+        /wait-for-it.sh db:3306 -t 20
+        python manage.py makemigrations
+        python manage.py migrate
+        python school_insert.py
+    env_file:
+      - .env.prod
+      - .env
+    depends_on:
+      - db
+      - redis
+    networks:
+      - backend
+    links:
+      - redis
+  celery-worker:
+    restart: always
+    image: image_name
+    container_name: celery-worker
+    command:
+      - bash
+      - -c
+      - |
+        celery -A gym worker -l info -P gevent
+    env_file:
+      - .env.prod
+      - .env
+    depends_on:
+      - db
+      - redis
+      - gym
+    networks:
+      - backend
+  celery-beat:
+    restart: always
+    image: image_name
+    container_name: celery-beat
+    command:
+      - bash
+      - -c
+      - |
+        celery -A gym beat -l info
+    env_file:
+      - .env.prod
+      - .env
+    depends_on:
+      - db
+      - redis
+      - gym
+      - celery-worker
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: 'bridge'
