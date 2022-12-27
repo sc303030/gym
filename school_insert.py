@@ -1,8 +1,9 @@
 import os
 import django
 import json
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', "gym.settings")
+from get_setting import get_setting
+setting = get_setting()
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting)
 django.setup()
 from reminder.models import School
 
