@@ -32,12 +32,12 @@ def save_token_to_json():
         'redirect_uri': REDIRECT_URI,
         'code': CODE,
     }
+    kakao_token = KakaoToken.objects.all()
+    if 0 == len(kakao_token):
+        response = requests.post(TOKEN_URL, data=data)
+        tokens = response.json()
+        # 발행된 토큰 저장
+        KakaoToken.objects.create(**tokens)
 
-    response = requests.post(TOKEN_URL, data=data)
-    tokens = response.json()
-    # 발행된 토큰 저장
-    KakaoToken.objects.create(**tokens)
 
-
-get_code()
-# save_token_to_json()
+save_token_to_json()
