@@ -13,7 +13,7 @@ from get_setting import load_env
 load_env()
 CLIENT_ID = os.getenv("CLIENT_ID")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
-CODE = os.getenv('code')
+CODE = os.getenv('CODE')
 TOKEN_URL = 'https://kauth.kakao.com/oauth/token'
 
 
