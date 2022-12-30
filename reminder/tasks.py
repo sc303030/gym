@@ -1,4 +1,4 @@
-from celery import shared_task
+from celery import shared_task, chain, chord, group
 from reminder.crawling.create_reminder import CreateReminder
 from reminder.kakao.save_token import refresh_token
 from reminder.kakao.send_reminder import send_reminder
@@ -15,8 +15,7 @@ def create_reminder_worker(school: str) -> None:
 @shared_task
 def start_crawling():
     schools = School.objects.all().values_list('name', flat=True)
-    for school in schools:
-        create_reminder_worker.delay(school)
+    group([create_reminder_worker.s(school) for school in schools])()
     reminders = Reminder.objects.filter(remind=False)
     for reminder in reminders:
         result = send_reminder(reminder)
