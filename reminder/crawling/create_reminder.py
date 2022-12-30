@@ -11,7 +11,8 @@ from typing import Optional
 @dataclass
 class CreateReminder:
     name: str
-    search_list: list[str] = field(default_factory=lambda: ['시설', '대관', '체육관', '대여'])
+    search_list: list[str] = field(
+        default_factory=lambda: ['시설', '대관', '체육관', '대여', '장기', '임대', '학교시설', '허가', '장기사용', '허가신청'])
     school: School = field(init=False)
     selector: dict = field(init=False)
 
@@ -40,6 +41,7 @@ class CreateReminder:
                 title = _notice.find(attrs={'class': self.selector['title']}).get_text().strip()
                 date = _notice.find(attrs={'class': self.selector['date']}).get_text().replace("/", "-")
                 for txt in self.search_list:
-                    if txt in title:
+                    idx = title.find(txt)
+                    if idx != -1:
                         return title, date
         return None, None
