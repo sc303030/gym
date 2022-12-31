@@ -122,4 +122,9 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(minute=0, hour='0,5,10,15,20'),
         'args': ()
     },
+    'send-reminder-18-hours': {
+        'task': 'reminder.tasks.send_kakao_reminder',
+        'schedule': crontab(minute=0, hour='18'),
+        'args': ()
+    },
 }
