@@ -12,4 +12,11 @@ __pycache__
 .env
 .env.dev
 .dockerignore
-crawling/*
+crawling/
+!reminder/crawling
+.env.prod
+.env-prod.db
+Dockerfile2
+Dockerfile3
+Dockerfile4
+Dockerfile5
