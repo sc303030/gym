@@ -9,6 +9,6 @@ ignore=
   E501,
   # W503: line break before binary operator
   W503
-exclude=.git,.github,__pycache__,.venv,venv,deploy, crawling
+exclude=.git,.github,__pycache__,.venv,venv,deploy, crawling, get_token.py, gym/setting, gym/tests.py, school_insert.py
 max-line-length=100
 max-complexity=10
