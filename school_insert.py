@@ -1,7 +1,10 @@
-import os
-import django
 import json
+import os
+
+import django
+
 from get_setting import get_setting
+
 setting = get_setting()
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting)
 django.setup()
@@ -11,7 +14,7 @@ school_list = [
     {'name': '사당중학교', 'url': 'https://sadang.sen.ms.kr/',
      'selector': {"main": "main_small_list", "title": "ellipsis", "date": "date"}},
     {'name': '봉은중학교', 'url': 'https://bongeun.sen.ms.kr/index.do',
-     'selector': {"main": "main_small_list", "title": "ellipsis", "date": "date"}}
+     'selector': {"main": "main_small_list", "title": "ellipsis", "date": "date"}},
 ]
 
 schools = []
