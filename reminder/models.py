@@ -18,9 +18,7 @@ class Notice(TimeStampedModel):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(
-                fields=["title", "date"], name="unique notice for each title"
-            )
+            models.UniqueConstraint(fields=["title", "date"], name="unique notice for each title")
         ]
 
     def __str__(self):

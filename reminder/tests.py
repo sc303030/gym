@@ -19,21 +19,15 @@ def test_with_client(school_one, school_two, client, celery_app, celery_worker):
 @pytest.fixture
 @pytest.mark.django_db(transaction=True)
 def school_one() -> School:
-    selector = json.dumps(
-        {"main": "main_small_list", "title": "ellipsis", "date": "date"}
-    )
-    school = School.objects.create(
-        name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector
-    )
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
+    school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector)
     return school
 
 
 @pytest.fixture
 @pytest.mark.django_db(transaction=True)
 def school_two() -> School:
-    selector = json.dumps(
-        {"main": "main_small_list", "title": "ellipsis", "date": "date"}
-    )
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
     school = School.objects.create(
         name="봉은중학교", url="https://bongeun.sen.ms.kr/index.do", selector=selector
     )
@@ -47,12 +41,8 @@ def notice_one(db, school_one) -> Notice:
 
 
 def test_create_school(db):
-    selector = json.dumps(
-        {"main": "main_small_list", "title": "ellipsis", "date": "date"}
-    )
-    school = School.objects.create(
-        name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector
-    )
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
+    school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector)
     assert school.name == "사당중학교"
 
 

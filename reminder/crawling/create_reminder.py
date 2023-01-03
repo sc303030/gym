@@ -42,9 +42,7 @@ class CreateReminder:
     def create_reminder(self, title: str, date: str) -> None:
         if title is not None:
             try:
-                notice = Notice.objects.create(
-                    school=self.school, title=title, date=date
-                )
+                notice = Notice.objects.create(school=self.school, title=title, date=date)
                 Reminder.objects.create(notice=notice)
             except IntegrityError:
                 pass
@@ -54,11 +52,7 @@ class CreateReminder:
         _notices = soup.find(attrs={"class": self.selector["main"]})
         for _notice in _notices:
             if type(_notice) is Tag:
-                title = (
-                    _notice.find(attrs={"class": self.selector["title"]})
-                    .get_text()
-                    .strip()
-                )
+                title = _notice.find(attrs={"class": self.selector["title"]}).get_text().strip()
                 date = (
                     _notice.find(attrs={"class": self.selector["date"]})
                     .get_text()
