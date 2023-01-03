@@ -15,7 +15,7 @@ def create_reminder_worker(school: str) -> None:
 
 @shared_task
 def start_crawling():
-    schools = School.objects.all().values_list('name', flat=True)
+    schools = School.objects.all().values_list("name", flat=True)
     group([create_reminder_worker.s(school) for school in schools])()
 
 
