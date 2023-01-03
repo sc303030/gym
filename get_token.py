@@ -3,13 +3,12 @@ import os
 import django
 import requests
 
-from get_setting import get_setting
+from get_setting import get_setting, load_env
 
 setting = get_setting()
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", setting)
 
 django.setup()
-from get_setting import load_env
 from reminder.models import KakaoToken
 
 load_env()
