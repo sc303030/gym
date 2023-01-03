@@ -1,9 +1,11 @@
-from gym.settings.common import *
 import pymysql
 
+from gym.settings.common import *
+
 pymysql.install_as_MySQLdb()
-import MySQLdb
 import os
+
+import MySQLdb
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')

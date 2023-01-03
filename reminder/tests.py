@@ -1,10 +1,13 @@
-from .models import School, Notice, Reminder
 import json
-import pytest
-from reminder.tasks import create_reminder_worker
-from reminder.crawling.create_reminder import CreateReminder
-from django_celery_results.models import TaskResult, ChordCounter, GroupResult
 from unittest.mock import patch
+
+import pytest
+from django_celery_results.models import ChordCounter, GroupResult, TaskResult
+
+from reminder.crawling.create_reminder import CreateReminder
+from reminder.tasks import create_reminder_worker
+
+from .models import Notice, Reminder, School
 
 
 @pytest.mark.django_db(transaction=True)

@@ -1,11 +1,13 @@
+import json
 from dataclasses import dataclass, field
-from reminder.models import School, Notice, Reminder
+from typing import Optional
+
+import requests
 from bs4 import BeautifulSoup
 from bs4.element import Tag
-import requests
-import json
 from django.db.utils import IntegrityError
-from typing import Optional
+
+from reminder.models import Notice, Reminder, School
 
 
 @dataclass

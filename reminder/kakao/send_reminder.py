@@ -1,5 +1,7 @@
-import requests
 import json
+
+import requests
+
 from reminder.models import KakaoToken, Reminder
 
 

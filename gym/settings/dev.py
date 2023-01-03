@@ -1,6 +1,7 @@
-from gym.settings.common import *
 import os
+
 from get_setting import load_env
+from gym.settings.common import *
 
 load_env()
 DEBUG = True

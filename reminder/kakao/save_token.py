@@ -1,8 +1,9 @@
-import requests
 import os
-from reminder.models import KakaoToken
+
+import requests
 
 from get_setting import load_env
+from reminder.models import KakaoToken
 
 load_env()
 CLIENT_ID = os.getenv("CLIENT_ID")

@@ -1,14 +1,16 @@
+import os
+
+import django
 import requests
-import os, django
+
 from get_setting import get_setting
 
 setting = get_setting()
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting)
 
 django.setup()
-from reminder.models import KakaoToken
-
 from get_setting import load_env
+from reminder.models import KakaoToken
 
 load_env()
 CLIENT_ID = os.getenv("CLIENT_ID")
@@ -39,5 +41,5 @@ def save_token_to_json():
         # 발행된 토큰 저장
         KakaoToken.objects.create(**tokens)
 
-
-save_token_to_json()
+get_code()
+# save_token_to_json()
