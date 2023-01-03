@@ -24,6 +24,7 @@ mysqlclient = "^2.1.1"
 [tool.poetry.group.dev.dependencies]
 pytest-django = "^4.5.2"
 pytest-celery = "^0.0.0"
+pre-commit = "^2.21.0"
 
 [build-system]
 requires = ["poetry-core"]
