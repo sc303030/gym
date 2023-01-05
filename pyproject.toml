@@ -71,6 +71,13 @@ stubPath = ""
 reportMissingImports = false
 reportMissingTypeStubs = false
 
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "reminder/tests.py",
+]
+DJANGO_SETTINGS_MODULE = "gym.settings.dev"
+addopts = "--reuse-db"
 
 [build-system]
 requires = ["poetry-core"]
