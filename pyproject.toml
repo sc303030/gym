@@ -78,6 +78,10 @@ testpaths = [
 ]
 DJANGO_SETTINGS_MODULE = "gym.settings.dev"
 addopts = "--reuse-db"
+filterwarnings = [
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
 
 [build-system]
 requires = ["poetry-core"]
