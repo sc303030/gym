@@ -37,12 +37,12 @@ def test_create_school(db):
     assert school.name == "사당중학교"
 
 
-#
-#
-# def test_create_notice(db, school_one):
-#     notice = Notice.objects.create(school=school_one, title="test", date="2022-12-18")
-#     assert notice.school.name == school_one.name
-#     assert notice.title == "test"
+def test_create_notice(db, school_one):
+    notice = Notice.objects.create(school=school_one, title="test", date="2022-12-18")
+    assert notice.school.name == school_one.name
+    assert notice.title == "test"
+
+
 #
 #
 # def test_create_notice_two(db, school_two):
