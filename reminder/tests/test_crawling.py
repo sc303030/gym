@@ -1,46 +1,42 @@
-# import json
-#
-# import pytest
-#
+import json
+
+import pytest
+
+from reminder.models import Notice, School
+
 # from reminder.tasks import create_reminder_worker
-#
-# from reminder.models import Notice, School
-#
-#
-# @pytest.mark.django_db(transaction=True)
-# def test_with_client(school_one, school_two, client, celery_app, celery_worker):
-#     response = client.get("/reminder/crawling/")
-#     assert len(Notice.objects.all()) == 1
-#
-#
-# @pytest.fixture
-# @pytest.mark.django_db(transaction=True)
-# def school_one() -> School:
-#     selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
-#     school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector)
-#     return school
-#
-#
-# @pytest.fixture
-# @pytest.mark.django_db(transaction=True)
-# def school_two() -> School:
-#     selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
-#     school = School.objects.create(
-#         name="봉은중학교", url="https://bongeun.sen.ms.kr/index.do", selector=selector
-#     )
-#     return school
-#
-#
-# @pytest.fixture
-# def notice_one(db, school_one) -> Notice:
-#     notice = Notice.objects.create(school=school_one, title="test", date="2022-12-18")
-#     return notice
-#
-#
-# def test_create_school(db):
-#     selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
-#     school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector)
-#     assert school.name == "사당중학교"
+
+
+@pytest.fixture
+@pytest.mark.django_db(transaction=True)
+def school_one() -> School:
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
+    school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector)
+    return school
+
+
+@pytest.fixture
+@pytest.mark.django_db(transaction=True)
+def school_two() -> School:
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
+    school = School.objects.create(
+        name="봉은중학교", url="https://bongeun.sen.ms.kr/index.do", selector=selector
+    )
+    return school
+
+
+@pytest.fixture
+def notice_one(db, school_one) -> Notice:
+    notice = Notice.objects.create(school=school_one, title="test", date="2022-12-18")
+    return notice
+
+
+def test_create_school(db):
+    selector = json.dumps({"main": "main_small_list", "title": "ellipsis", "date": "date"})
+    school = School.objects.create(name="사당중학교", url="https://sadang.sen.ms.kr/", selector=selector)
+    assert school.name == "사당중학교"
+
+
 #
 #
 # def test_create_notice(db, school_one):
