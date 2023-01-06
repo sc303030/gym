@@ -74,7 +74,7 @@ reportMissingTypeStubs = false
 [tool.pytest.ini_options]
 minversion = "6.0"
 testpaths = [
-    "reminder/tests.py",
+    "reminder/tests",
 ]
 DJANGO_SETTINGS_MODULE = "gym.settings.dev"
 addopts = "--reuse-db"

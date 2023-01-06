@@ -4,7 +4,7 @@
 #
 # from reminder.tasks import create_reminder_worker
 #
-# from .models import Notice, School
+# from reminder.models import Notice, School
 #
 #
 # @pytest.mark.django_db(transaction=True)
