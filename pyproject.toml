@@ -78,7 +78,7 @@ testpaths = [
     "reminder/tests",
 ]
 DJANGO_SETTINGS_MODULE = "gym.settings.dev"
-addopts = "--reuse-db --cov=reminder/tests"
+addopts = "--reuse-db --cov=reminder reminder/tests"
 filterwarnings = [
     "ignore::UserWarning",
     "ignore::DeprecationWarning",
@@ -88,7 +88,7 @@ filterwarnings = [
 
 [tool.coverage.run]
 branch = true
-omit = ["reminder/tests/__init__.py",]
+omit = ["*__init__.py", "reminder/urls.py", "reminder/admin.py", "reminder/apps.py","reminder/migrations/*"]
 
 
 [build-system]
