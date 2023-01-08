@@ -88,7 +88,7 @@ filterwarnings = [
 
 [tool.coverage.run]
 branch = true
-omit = ["*__init__.py", "reminder/urls.py", "reminder/admin.py", "reminder/apps.py","reminder/migrations/*"]
+omit = ["*__init__.py", "reminder/urls.py", "reminder/admin.py", "reminder/apps.py","reminder/migrations/*", "reminder/tests/*"]
 
 
 [build-system]
