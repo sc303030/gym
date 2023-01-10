@@ -25,6 +25,7 @@ class CreateReminder:
             "허가",
             "장기사용",
             "허가신청",
+            "개방",
         ]
     )
     school: School = field(init=False)
