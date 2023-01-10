@@ -79,7 +79,7 @@ testpaths = [
     "reminder/tests",
 ]
 DJANGO_SETTINGS_MODULE = "gym.settings.dev"
-addopts = "--reuse-db --cov=reminder reminder/tests"
+addopts = "--reuse-db --cov-report term-missing --cov=reminder reminder/tests"
 filterwarnings = [
     "ignore::UserWarning",
     "ignore::DeprecationWarning",
