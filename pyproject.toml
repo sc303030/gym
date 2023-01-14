@@ -93,6 +93,11 @@ branch = true
 omit = ["*__init__.py", "reminder/urls.py", "reminder/admin.py", "reminder/apps.py","reminder/migrations/*", "reminder/tests/*"]
 
 
+
+[tool.coverage.report]
+exclude_lines = ['def get_tokens']
+
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
