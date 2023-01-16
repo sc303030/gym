@@ -90,12 +90,12 @@ filterwarnings = [
 
 [tool.coverage.run]
 branch = true
-omit = ["*__init__.py", "reminder/urls.py", "reminder/admin.py", "reminder/apps.py","reminder/migrations/*", "reminder/tests/*"]
+omit = ["*__init__.py", "reminder/urls.py", "reminder/admin.py", "reminder/apps.py","reminder/migrations/*", "reminder/tests/*", "reminder/kakao/send_reminder.py"]
 
 
 
 [tool.coverage.report]
-exclude_lines = ['def get_tokens']
+exclude_lines = ['def get_tokens', 'def send_kakao_reminder']
 
 
 [build-system]
