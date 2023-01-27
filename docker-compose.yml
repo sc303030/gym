@@ -15,7 +15,7 @@ services:
 
   gym:
     restart: always
-    image: lkh6035/gym:gym
+    image: ""
     container_name: gym
     command:
       - bash
@@ -38,7 +38,7 @@ services:
       - redis
   celery-worker:
     restart: always
-    image: lkh6035/gym:gym
+    image: ""
     container_name: celery-worker
     command:
       - bash
@@ -55,7 +55,7 @@ services:
       - backend
   celery-beat:
     restart: always
-    image: lkh6035/gym:gym
+    image: ""
     container_name: celery-beat
     command:
       - bash
