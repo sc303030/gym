@@ -83,6 +83,18 @@ def test_error_notice_unique_constraint(db, school_one, notice_one):
     assert str(e.value) == "UNIQUE constraint failed: reminder_notice.title, reminder_notice.date"
 
 
+@pytest.mark.django_db(transaction=True)
+def test_increase_notice_id(school_one, notice_one):
+    # Given: school object and already saved notice object
+    # When: saving with the same title and date and next other title data
+    with pytest.raises(Exception):
+        Notice.objects.create(school=school_one, title="test", date="2022-12-18")
+    notice = Notice.objects.create(school=school_one, title="test2", date="2022-12-18")
+
+    # Then: notice.id should be equal 2
+    assert notice.id == 2
+
+
 def test_notice_str(db, notice_one):
     expected = "사당중학교 - test"
     # When: call notice object

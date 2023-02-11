@@ -9,7 +9,15 @@ class School(TimeStampedModel):
     selector = models.JSONField()
 
 
+def notice_pk():
+    last_obj = Notice.objects.last()
+    if last_obj:
+        return last_obj.id + 1
+    return 1
+
+
 class Notice(TimeStampedModel):
+    id = models.BigAutoField(default=notice_pk, primary_key=True, unique=True)
     school = models.ForeignKey(
         School, related_name="school", on_delete=models.CASCADE, db_column="school_id"
     )
